@@ -1,4 +1,4 @@
-# Computer Vision Summary from Standford CS231n 2017
+# Computer Vision Summary Notes from Standford CS231n 2017
 This notes is forked from a popular repo and then edited by myself. I've added some content to better learning computer vision. This is only for self study.
 
 ## Table of contents
@@ -117,6 +117,8 @@ This notes is forked from a popular repo and then edited by myself. I've added s
 
 - There are different regularizations techniques:
 
+  
+
   - | Regularizer           | Equation                            | Comments               |
     | --------------------- | ----------------------------------- | ---------------------- |
     | L2                    | `R(W) = Sum(W^2)`                   | Sum all the W squared  |
@@ -153,16 +155,19 @@ This notes is forked from a popular repo and then edited by myself. I've added s
     - ```python
       f = np.array([123, 456, 789]) # example with 3 classes and each having large scores
       p = np.exp(f) / np.sum(np.exp(f)) # Bad: Numeric problem, potential blowup
-
+      
       # instead: first shift the values of f so that the highest number is 0:
       f -= np.max(f) # f becomes [-666, -333, 0]
       p = np.exp(f) / np.sum(np.exp(f)) # safe to do, gives the correct answer
       ```
 
+    - The cross-entropy loss is averaged over each input/output pair by using the tf.reduce_mean op. Another handy and more general function is provided by the TensorFlow library, called tf.nn.softmax_cross_entropy_with_logits. You can find more about it in the official documentation: http://mng.bz/8mEk.
+
 - **Optimization**:
 
   - How we can optimize loss functions we discussed?
   - Strategy one:
+
     - Get a random parameters and try all of them on the loss and get the best loss. But its a bad idea.
   - Strategy two:
     - Follow the slope.
@@ -174,13 +179,12 @@ This notes is forked from a popular repo and then edited by myself. I've added s
       - **Analytic gradient**: Exact, Fast, Error-prone.   (Always used in practice)
 
     - After we compute the gradient of our parameters, we compute the gradient descent:
-      - ```python
-        W = W - learning_rate * W_grad
-        ```
+      - `W = W - learning_rate * W_grad`
 
     - learning_rate is so important hyper parameter you should get the best value of it first of all the hyperparameters.
 
     - stochastic gradient descent:
+
       - Instead of using all the date, use a mini batch of examples (32/64/128 are commonly used) for faster results.
 
 
@@ -864,8 +868,6 @@ This notes is forked from a popular repo and then edited by myself. I've added s
   - Serialization
 
     - **Static**: Once graph is built, can serialize it and run it without the code that built the graph. Ex use the graph in c++
-
-
     - **Dynamic**: Always need to keep the code around.
 
   - Conditional
@@ -895,6 +897,8 @@ This notes is forked from a popular repo and then edited by myself. I've added s
 - Also we will discuss some interesting architectures as we go.
 
 - The first ConvNet that was made was [LeNet-5](http://ieeexplore.ieee.org/document/726791/) architectures are:by Yann Lecun at 1998.
+
+  - Example code <https://github.com/vincenzosantopietro/LeNet-5-Tensorflow>
 
   - Architecture are: `CONV-POOL-CONV-POOL-FC-FC-FC`
     - ![](Images/02.jpg)
@@ -1258,7 +1262,7 @@ This notes is forked from a popular repo and then edited by myself. I've added s
 
     - It will work but its not a good idea because it will be computational expensive!
     - Very inefficient! Not reusing shared features between overlapping patches.
-    - In practice nobody uses this.
+    - **In practice nobody uses this.**
 
   - The second idea is designing a network as a bunch of Convolutional layers to make predictions for pixels all at once!
 
@@ -1268,7 +1272,7 @@ This notes is forked from a popular repo and then edited by myself. I've added s
     - The loss is cross entropy between each pixel provided.
     - Data augmentation are good here.
     - The problem with this implementation that convolutions at original image resolution will be very expensive.
-    - So in practice we don't see something like this right now.
+    - **So in practice we don't see something like this right now.**
 
   - The third idea is based on the last idea. The difference is that we are downsampling and upsampling inside the network.
 
@@ -1356,9 +1360,9 @@ This notes is forked from a popular repo and then edited by myself. I've added s
     - Faster R-CNN is slower but more accurate.
     - SSD/YOLO is much faster but not as accurate.
 
-- **<u>Denese Captioning</u>**
+- **<u>Dense Captioning</u>**
 
-  - Denese Captioning is "Object Detection + Captioning"
+  - Dense Captioning is "Object Detection + Captioning"
   - Paper that covers this idea can be found [here](https://arxiv.org/abs/1511.07571).
 
 - **<u>Instance Segmentation</u>**
