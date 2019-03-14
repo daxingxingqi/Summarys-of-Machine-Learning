@@ -1,5 +1,5 @@
-# Standford CS231n 2017 Summary
-After watching all the videos of the famous Standford's [CS231n](http://cs231n.stanford.edu/) course that took place in 2017, i decided to take summary of the whole course to help me to remember and to anyone who would like to know about it. I've skipped some contents in some lectures as it wasn't important to me.
+# Computer Vision Summary from Standford CS231n 2017
+This notes is forked from a popular repo and then edited by myself. I've added some content to better learning computer vision. This is only for self study.
 
 ## Table of contents
 
